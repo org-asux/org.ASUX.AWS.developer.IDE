@@ -8,12 +8,13 @@ BILLING_REF=tosarma@gmail.com
 ###-------------------------------------------
 CLIENT="none"
 
-# AMI_ID=ami-039e9f66dd927b74f
-AMI_ID="amazonlinux-2-x86_64"
+AMI_ID=ami-0f478416a181c0707
+# AMI_ID="amazonlinux-2-x86_64"
 
 ###-------------------------------------------
-TAGS=(  Key=IDEIntanceName,Value=c9-${DEVELOPER_ID}-${IDENAME} 
+TAGS=(  Key=application,Value=c9-${DEVELOPER_ID}-${IDENAME} 
         Key=client,Value=${CLIENT}
+        Key=layer,Value=developer
         Key=owner,Value=${DEVELOPER_ID}
         Key=billing,Value=${BILLING_REF}@${CLIENT}
         Key=env,Value=dev
