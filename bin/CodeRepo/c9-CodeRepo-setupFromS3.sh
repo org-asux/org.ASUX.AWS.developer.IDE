@@ -74,12 +74,13 @@ SSMPARAMPREFIX_CODEREPO="/${PROJECTID}"        ### ATTN: Don't include ${ENV} in
 GITHUB_RAW_URL="https://raw.githubusercontent.com/org-asux/org.ASUX.AWS.developer.IDE/main/bin/CodeRepo"
 ### gitlab -> GITLAB_RAW_URL="https://gitlab.com/user/PROJECTID/raw/main/path2Folder/filename"
 
+MyCodeRepoSetupScript="c9-CodeRepo-setup.sh"
+
 ### =========================================================
 ### @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ### =========================================================
 
 ### ---------- CONFIGURE CLI for Subversion/SVN -------------
-MyCodeRepoSetupScript=~/c9-CodeRepo-setup.sh     ### WARNING: Do not put the value in QUOTES. Why? Reason: The ~ character.
 SVNCONFDIR=~/.subversion                         ### WARNING: Do not put the value in QUOTES. Why? Reason: The ~ character.
 SVNCONF=${SVNCONFDIR}/servers
 mkdir -p ${SVNCONFDIR}
@@ -109,18 +110,18 @@ echo REPO_PASSWORD=${REPO_PASSWORD}
 
 ### ------------ "pull" the "other" file from Code-Repo -------------
 echo \
-curl -o ${MyCodeRepoSetupScript} "${GITHUB_RAW_URL}/${MyCodeRepoSetupScript}"
-curl -o ${MyCodeRepoSetupScript} "${GITHUB_RAW_URL}/${MyCodeRepoSetupScript}"
+curl -o ~/${MyCodeRepoSetupScript} "${GITHUB_RAW_URL}/${MyCodeRepoSetupScript}"
+curl -o ~/${MyCodeRepoSetupScript} "${GITHUB_RAW_URL}/${MyCodeRepoSetupScript}"
 # pushd ~
 # svn export   ${GITHUB_RAW_URL}/devtools/c9-CodeRepo-setup.sh --username=${REPO_USERID} --password=${REPO_PASSWORD} --force > /dev/null
 # popd
 
 ### ------------ UPDATE the "other" file -------------
-cat ${MyCodeRepoSetupScript} | sed -e "s/^export PROJECTID=\"[a-zA-Z0-9_-][a-zA-Z0-9_-]*\"$/export PROJECTID=\"${PROJECTID}\"/" > /tmp/o
-mv /tmp/o  ${MyCodeRepoSetupScript}
+cat ~/${MyCodeRepoSetupScript} | sed -e "s/^export PROJECTID=\"[a-zA-Z0-9_-][a-zA-Z0-9_-]*\"$/export PROJECTID=\"${PROJECTID}\"/" > /tmp/o
+mv /tmp/o  ~/${MyCodeRepoSetupScript}
 
-cat ${MyCodeRepoSetupScript} | sed -e "s/^export USERID=\"[a-zA-Z0-9_-][a-zA-Z0-9_-]*\"$/export USERID=\"${USERID}\"/" > /tmp/o
-mv /tmp/o  ${MyCodeRepoSetupScript}
+cat ~/${MyCodeRepoSetupScript} | sed -e "s/^export USERID=\"[a-zA-Z0-9_-][a-zA-Z0-9_-]*\"$/export USERID=\"${USERID}\"/" > /tmp/o
+mv /tmp/o  ~/${MyCodeRepoSetupScript}
 
 
 ### ------------ FRIENDLY OUTPUT -------------
